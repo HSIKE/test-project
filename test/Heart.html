@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❤️❤️❤️</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        .wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            height: 100vh;
+        }
+        #text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /*font-style: italic;*/
+            color: #61dafb;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <canvas id="heartCanvas"></canvas>
+<!--    <span id="text">章园琴</span>-->
+</div>
+<script>
+  const canvas = document.getElementById('heartCanvas')
+  canvas.width = window.innerHeight * 4 / 3;
+  canvas.height = window.innerHeight;
+  let w = canvas.width
+  let h = canvas.height
+  let ctx = canvas.getContext("2d");
+  ctx.save();
+  ctx.beginPath();
+  ctx.fillStyle = "#f23232";
+  ctx.translate(w / 2, h / 2);
+  ctx.scale(1, -1);
+  ctx.moveTo(0, 0);
+  let angle = 0;
+  let x = 0;
+  let y = 0;
+  let a = 18;
+  for (let i = 0; i < 30; i += 0.1) {
+    angle = i / Math.PI;
+    x = a * (16 * Math.sin(angle) ** 3);
+    y = a * (
+      13 * Math.cos(angle)
+        - 5 * Math.cos(2 * angle)
+        - 2 * Math.cos(3 * angle)
+        - Math.cos(4 * angle)
+    );
+    ctx.lineTo(x, y);
+  }
+  ctx.fill();
+  ctx.closePath();
+  ctx.restore();
+</script>
+<script>
+  const resizeHandler = () => {
+    const text = document.getElementById('text');
+    text.style.fontSize = `${60 * window.innerHeight / 788}px`;
+  };
+  resizeHandler();
+  window.addEventListener('resize', () => {
+    const text = document.getElementById('text');
+    text.style.fontSize = `${60 * window.innerHeight / 788}px`;
+  });
+</script>
+
+</body>
+</html>
